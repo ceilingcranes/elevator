@@ -1,5 +1,5 @@
 from math import floor
-import elevator
+from elevator import Elevator
 
 def get_floor_list_input(max_floor):
     is_error = True
@@ -31,14 +31,14 @@ def main():
 
         if(start_floor < 0 or max_floor<0 or start_floor>max_floor):
             raise ValueError
-            
+
     except ValueError:
         print("Invalid value. Please enter one positive integer for start and max floors, and a comma-seperated list of integers for the floor list.")
     
     floor_list = get_floor_list_input(max_floor)
 
     while(floor_list):
-        elevator_info = elevator.Elevator(start_floor, max_floor, seconds_per_floor)
+        elevator_info = Elevator(start_floor, max_floor, seconds_per_floor)
         total_time = 0
         print("===========")
         for floor in elevator_info.get_floor_order_nearest(floor_list):
