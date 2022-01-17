@@ -28,8 +28,20 @@ class TestElevator(unittest.TestCase):
     def test_update_floor(self):
         self.test_elevator.update_floor(4)
         self.assertEqual(self.test_elevator.current_floor, 4)
-    
+        self.test_elevator.update_floor(2)
 
+    def test_get_floor_info(self):
+        floor_info = self.test_elevator.get_floor_info(1)
+        self.assertEqual(floor_info, [2, -1, 1])
+
+    def test_get_floor_order_nearest(self):
+        floor_list_up = [7, 3, 9]
+        ordered_list_up = self.test_elevator.get_floor_order_nearest(floor_list_up)
+        self.assertEqual(ordered_list_up, [3, 7, 9])
+
+        floor_list_down = [1, 7, 3]
+        ordered_list_down = self.test_elevator.get_floor_order_nearest(floor_list_down)
+        self.assertEqual(ordered_list_down, [1, 3, 7])
 
 if __name__=="__main__":
     unittest.main()
