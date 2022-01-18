@@ -2,6 +2,14 @@ from math import floor
 from elevator import Elevator
 
 def get_floor_list_input(max_floor):
+    '''Utility function which asks the user for floor inputs and manages all the error handling.
+
+    Parameters:
+        max_floor (int): The limit of the floor requests
+    
+    Returns:
+        floor_list (list of ints): the user-entered list of requested floors
+    '''
     is_error = True
     while(is_error):
         try:
@@ -37,8 +45,10 @@ def main():
     
     floor_list = get_floor_list_input(max_floor)
 
+    elevator_info = Elevator(start_floor, max_floor, seconds_per_floor)
+
+    # while floor_list isn't empty
     while(floor_list):
-        elevator_info = Elevator(start_floor, max_floor, seconds_per_floor)
         total_time = 0
         print("===========")
         for floor in elevator_info.get_floor_order_nearest(floor_list):
